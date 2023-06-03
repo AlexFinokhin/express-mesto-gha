@@ -33,10 +33,10 @@ app.use(errors());
 
 app.use((error, request, response, next) => {
   const { status = 500, message } = error;
-  response.status(status).send({
-    message: status === 500 ? 'На сервере произошла ошибка' : message,
-  });
-  logger.error(`${status} - ${message}`);
+  const errorMessage = status === 500 ? 'На сервере произошла ошибка' : message;
+
+  response.status(status).json({ message: errorMessage });
+  logger.error(`${status} - ${errorMessage}`);
   next();
 });
 
