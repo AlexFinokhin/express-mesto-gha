@@ -6,13 +6,13 @@ const BadRequestError = require('../errors/400-BadRequestError');
 
 const urlValidation = (url) => {
   if (isUrl(url)) return url;
-  throw new BadRequestError('Incorrect URL');
+  throw new BadRequestError('Ошибка: некорректный URL');
 };
 
 const IdValidation = (id) => {
   const regex = /^[0-9a-fA-F]{24}$/;
   if (regex.test(id)) return id;
-  throw new BadRequestError('Incorrect id');
+  throw new BadRequestError('Ошибка: некорректный ID');
 };
 
 const validationCreateUser = async (req, res, next) => {
