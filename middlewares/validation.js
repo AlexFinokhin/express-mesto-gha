@@ -9,11 +9,11 @@ const urlValidation = (url) => {
   throw new BadRequestError('Ошибка: некорректный URL');
 };
 
-const IdValidation = (id) => {
-  const regex = /^[0-9a-fA-F]{24}$/;
-  if (regex.test(id)) return id;
-  throw new BadRequestError('Ошибка: некорректный ID');
-};
+// const IdValidation = (id) => {
+//   const regex = /^[0-9a-fA-F]{24}$/;
+//   if (regex.test(id)) return id;
+//   throw new BadRequestError('Ошибка: некорректный ID');
+// };
 
 const validationCreateUser = async (req, res, next) => {
   try {
@@ -35,7 +35,7 @@ const validationCardId = async (req, res, next) => {
   try {
     await celebrate({
       params: Joi.object().keys({
-        cardId: Joi.string().required().custom(IdValidation),
+        cardId: Joi.string().required().length(24).hex(),
       }),
     })(req, res, next);
   } catch (error) {
@@ -98,7 +98,7 @@ const validationUserId = async (req, res, next) => {
   try {
     await celebrate({
       params: Joi.object().keys({
-        userId: Joi.string().required().custom(IdValidation),
+        userId: Joi.string().required().length(24).hex(),
       }),
     })(req, res, next);
   } catch (error) {
