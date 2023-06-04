@@ -38,7 +38,7 @@ const userSchema = new mongoose.Schema({
       message: 'Некорректный email',
     },
   },
-});
+}, { versionKey: false });
 
 userSchema.statics.findUserByCredentials = async function _(email, password) {
   const user = await this.findOne({ email }).select('+password');
