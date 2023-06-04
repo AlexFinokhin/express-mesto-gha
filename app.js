@@ -46,9 +46,6 @@ async function start() {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    app.use('*', (req, res) => {
-      res.status(notFoundError).send({ message: 'Такой страницы нет' });
-    });
     await app.listen(PORT);
     console.log(`Ееееее все запустилось\n${MONGO_URL}\nPort: ${PORT}`);
   } catch (err) {
