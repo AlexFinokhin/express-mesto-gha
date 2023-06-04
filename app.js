@@ -6,8 +6,6 @@ const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-
-const auth = require('./middlewares/auth');
 const router = require('./routes/router');
 const errorHandler = require('./configs/errorHandler');
 
@@ -19,7 +17,6 @@ app.use(bodyParser.json());
 app.use(helmet());
 app.use(cookieParser());
 app.use(cors());
-app.use(auth);
 app.use(router);
 app.use(errors());
 
