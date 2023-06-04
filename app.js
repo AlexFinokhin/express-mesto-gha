@@ -7,7 +7,6 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
 const logger = require('./configs/winston');
-
 const auth = require('./middlewares/auth');
 const router = require('./routes/router');
 

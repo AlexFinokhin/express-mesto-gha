@@ -1,16 +1,20 @@
-const router = require('express')
-  .Router();
+const router = require('express').Router();
+
+const rateLimit = require('express-rate-limit');
+
+const cardsRouter = require('./cards');
+const usersRouter = require('./users');
 
 const { validationLogin, validationCreateUser } = require('../middlewares/validation');
 const { login, createUser } = require('../controllers/users');
 
-const cardsRouter = require('./cards');
-const usersRouter = require('./users');
+const authLimiterOptions = require('../configs/rateLimit');
 const NotFoundError = require('../errors/404-NotFoundError');
 
-router.post('/signin', validationLogin, login);
+const authLimiter = rateLimit(authLimiterOptions);
 
-router.post('/signup', validationCreateUser, createUser);
+router.post('/signin', authLimiter, validationLogin, login);
+router.post('/signup', authLimiter, validationCreateUser, createUser);
 
 router.use('/users', usersRouter);
 router.use('/cards', cardsRouter);
