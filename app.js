@@ -10,7 +10,6 @@ const cors = require('cors');
 const authLimiterOptions = require('./configs/rateLimit');
 const logger = require('./configs/winston');
 const { createUser, login } = require('./controllers/users');
-const notFoundError = require('./errors/404-NotFoundError');
 const { validationCreateUser, validationLogin } = require('./middlewares/validation');
 const auth = require('./middlewares/auth');
 const router = require('./routes/router');
