@@ -13,7 +13,7 @@ const { createUser, login } = require('./controllers/users');
 const { validationCreateUser, validationLogin } = require('./middlewares/validation');
 const auth = require('./middlewares/auth');
 const router = require('./routes/router');
-const errorHandler = require('./configs/errorHandler'); 
+const errorHandler = require('./configs/errorHandler');
 
 const { MONGO_URL = 'mongodb://127.0.0.1:27017/mestodb', PORT = 3000 } = process.env;
 
