@@ -43,12 +43,12 @@ const userSchema = new mongoose.Schema({
 userSchema.statics.findUserByCredentials = async function _(email, password) {
   const user = await this.findOne({ email }).select('+password');
   if (!user) {
-    throw new UnauthorizedError('Ошибка: неверный email или пароль');
+    return Promise.reject(new UnauthorizedError('Ошибка: неверный email или пароль'));
   }
 
   const matched = await bcrypt.compare(password, user.password);
   if (!matched) {
-    throw new UnauthorizedError('Ошибка: неверный email или пароль');
+    return Promise.reject(new UnauthorizedError('Ошибка: неверный email или пароль'));
   }
 
   return user;
