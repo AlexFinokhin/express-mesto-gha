@@ -9,12 +9,6 @@ const urlValidation = (url) => {
   throw new BadRequestError('Ошибка: некорректный URL');
 };
 
-// const IdValidation = (id) => {
-//   const regex = /^[0-9a-fA-F]{24}$/;
-//   if (regex.test(id)) return id;
-//   throw new BadRequestError('Ошибка: некорректный ID');
-// };
-
 const validationCreateUser = async (req, res, next) => {
   try {
     await celebrate({
