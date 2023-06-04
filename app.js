@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
 const logger = require('./configs/winston');
-const notFoundError = require('./errors/404-NotFoundError');
+
 const auth = require('./middlewares/auth');
 const router = require('./routes/router');
 
@@ -38,9 +38,6 @@ async function start() {
     await mongoose.connect(MONGO_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-    });
-    app.use('*', (req, res) => {
-      res.status(notFoundError).send({ message: 'Такой страницы нет' });
     });
     await app.listen(PORT);
     console.log(`Ееееее все запустилось\n${MONGO_URL}\nPort: ${PORT}`);
