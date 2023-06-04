@@ -8,11 +8,12 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
 const authLimiterOptions = require('./configs/rateLimit');
-const logger = require('./configs/winston');
+
 const { createUser, login } = require('./controllers/users');
 const { validationCreateUser, validationLogin } = require('./middlewares/validation');
 const auth = require('./middlewares/auth');
 const router = require('./routes/router');
+const errorHandler = require('./configs/errorHandler'); 
 
 const { MONGO_URL = 'mongodb://127.0.0.1:27017/mestodb', PORT = 3000 } = process.env;
 
@@ -30,14 +31,7 @@ app.use(auth);
 app.use(router);
 app.use(errors());
 
-app.use((error, request, response, next) => {
-  const { status = 500, message } = error;
-  const errorMessage = status === 500 ? 'На сервере произошла ошибка' : message;
-
-  response.status(status).json({ message: errorMessage });
-  logger.error(`${status} - ${errorMessage}`);
-  next();
-});
+app.use(errorHandler); // Use the errorHandler middleware
 
 async function start() {
   try {
