@@ -1,5 +1,5 @@
 const router = require('express').Router();
-
+const { errors } = require('celebrate');
 const rateLimit = require('express-rate-limit');
 
 const cardsRouter = require('./cards');
@@ -21,5 +21,6 @@ router.use('/cards', cardsRouter);
 router.use((request, response, next) => {
   next(new NotFoundError('Ошибка: Страница не найдена'));
 });
+router.use(errors());
 
 module.exports = router;

@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const { errors } = require('celebrate');
+
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
@@ -21,7 +21,6 @@ app.use(cookieParser());
 app.use(cors());
 app.use(auth);
 app.use(router);
-app.use(errors());
 
 app.use((error, request, response, next) => {
   const { status = 500, message } = error;
