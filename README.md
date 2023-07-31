@@ -11,7 +11,7 @@
 2. Mesto (бэкенд) :star: *этот репозиторий*
 3. [Mesto (React, регистрация и авторизация)](https://github.com/alexfinokhin/react-mesto-auth)
 4. [Mesto (React)](https://github.com/alexfinokhin/mesto-react)
-5. [Mesto (версия classes)](https://github.com/alexfinokhin/mesto)
+5. [Mesto (версия classes)](https://github.com/alexfinokhin/mesto-project)
 6. [Mesto (классическая версия на JS)](https://github.com/alexfinokhin/mesto-classic)
 
 ## Директории
